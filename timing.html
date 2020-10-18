@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+
+    <script>
+        const button = document.querySelector('button');
+        button.addEventListener('click', fadeOut);
+        function fadeOut(e) {
+            e.target.removeEventListener('click',fadeOut);
+            const div = document.getElementById('fade-obj');
+            // console.log(div.style.opacity);
+            let opacity = 1;
+            let timing = setInterval(() => {
+                div.style.opacity = opacity;
+                // console.log(div.style.opacity);
+                if (opacity <= 0) {
+                    clearInterval(timing);
+                    e.target.addEventListener('click', fadeIn);
+                    e.target.textContent = '淡入';
+                }
+                opacity -= 0.05;
+            }, 100);
+        }
+        function fadeIn(e) {
+            e.target.removeEventListener('click',fadeIn);
+            const div = document.getElementById('fade-obj');
+            // console.log(div.style.opacity);
+            let opacity = 0;
+            let timing = setInterval(() => {
+                div.style.opacity = opacity;
+                // console.log(div.style.opacity);
+                if (opacity >= 1) {
+                    clearInterval(timing);
+                    e.target.addEventListener('click', fadeOut);
+                    e.target.textContent = '淡出';
+
+                }
+                opacity += 0.05;
+            }, 100);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+        for (const input of inputs) {
+            input.addEventListener('click', change);
+        }
+        function change() {
+            const selects = document.querySelectorAll('select');
+            for (const select of selects) {
+                if (select.id == `${this.id}-select`) {
+                    // console.log(select);
+                    select.style.display = 'block';
+                }else {
+                    select.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
